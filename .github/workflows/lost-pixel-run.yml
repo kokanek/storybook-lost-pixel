@@ -35,4 +35,4 @@ jobs:
           delete-branch: true
           branch: "lost-pixel-baselines/${{ github.ref_name }}"
           title: "Lost Pixel updating baselines - ${{ github.ref_name }}"
-          body: Automated baseline update PR 
+          body: Automated baseline update PR - lost pixel
