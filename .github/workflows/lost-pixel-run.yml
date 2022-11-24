@@ -22,3 +22,16 @@ jobs:
 
       - name: Lost Pixel
         uses: lost-pixel/lost-pixel@v2.23.0
+        env:
+          LOST_PIXEL_MODE: update
+
+      - name: Pull request
+        uses: peter-evans/create-pull-request@v4
+        if: ${{ failure() && steps.lp.conclusion == 'failure' }}
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          commit-message: update lost-pixel baselines
+          delete-branch: true
+          branch: "lost-pixel-baselines/${{ github.ref_name }}"
+          title: "Lost Pixel updating baselines - ${{ github.ref_name }}"
+          body: Automated baseline update PR 
